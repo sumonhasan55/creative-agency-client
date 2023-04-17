@@ -1,8 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import navlogo  from '../../../Assest/images/logos/logo.png'
+import { AuthContext } from '../../../context/AuthProvider';
 
 const Navbar = () => {
+
+    const {logOut,user}=useContext(AuthContext)
+    const navigate =useNavigate()
+
+    const handleLogout = ()=>{
+        logOut()
+        .then(()=>{
+           alert("logout-successfully")
+           navigate("/login")
+
+        })
+        .catch((error)=>{
+            console.log('Error',error)
+        })
+
+
+    }
+
     return (
         <div>
             <div className="navbar bg-amber-400">
@@ -31,7 +50,11 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                   <Link to="/login"> <a className="btn">Login</a></Link>
+                   {
+                    user? <button onClick={handleLogout} className='btn text-red-500 bg-white'>Logout</button>:
+                    <Link to="/login"> <a className="btn">Login</a></Link>
+
+                   }
                 </div>
             </div>
         </div>

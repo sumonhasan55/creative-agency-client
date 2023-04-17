@@ -1,4 +1,5 @@
 import Login from "../Home/Account/Login/Login";
+import Register from "../Home/Account/Register/Register";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../layout/Main/Main");
@@ -16,8 +17,13 @@ const router = createBrowserRouter([
             {
                 path:"/login",
                 element:<Login></Login>
+            },
+            {
+                path:"/register",
+                element:<Register></Register>
             }
         ]
+         
     }
 ])
 export default router;
